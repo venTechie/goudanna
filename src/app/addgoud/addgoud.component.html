@@ -1,0 +1,42 @@
+<div class="content" role="main">  
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Add Goud</h1>
+        </div>
+      </div>
+      <!-- generate a form contains Drop down districts,Mandals,Villages with respective onchange on District and Mandal, also add submmit button, use bootstrap to generate form-->
+      <form (ngSubmit)="onSubmit()" #districtForm="ngForm">
+        <div class="form-group">
+          <label for="goudName">Goud Name</label>
+          <input type="text" class="form-control" id="goudName" name="goudName" [(ngModel)]="goudName" placeholder="Enter Goud Name" >        </div>
+        <div class="form-group">
+          <label for="goudPhNumber">Goud Phone Number</label>
+          <input type="text" class="form-control" id="goudPhNumber" name="goudPhNumber" [(ngModel)]="goudPhNumber" placeholder="Goud Phone Number">
+        </div>
+        <div class="form-group">
+          <label for="district" class="">Select District</label>
+          <ng-select placeholder="Select District" id="district" name="district" [(ngModel)]="district" (change)="onDistrictChange($event)" >
+            <ng-option value="0">Select District</ng-option> <!-- this is to show the placeholder -->
+            <ng-option *ngFor="let district of districts" [value]="district.dist_code">{{district.dist_name}}</ng-option>
+          </ng-select>
+        </div>
+        <div class="form-group">
+          <label for="mandal">Select Mandal</label>
+          <ng-select placeholder="Select Mandal" id="mandal" name="mandal" [(ngModel)]="mandal" (change)="onMandalChange($event)">
+            <ng-option value="0">Select Mandal</ng-option> <!-- this is to show the placeholder -->
+            <ng-option *ngFor="let mandal of mandals" [value]="mandal.mandal_code">{{mandal.mandal_name}}</ng-option>
+          </ng-select>
+        </div>
+        <div class="form-group">
+          <label for="village">Select Village</label>
+          <ng-select placeholder="Select Village" id="village" name="village" [(ngModel)]="village">
+            <ng-option value="0">Select Village</ng-option> <!-- this is to show the placeholder -->
+            <ng-option *ngFor="let village of villages" [value]="village.village_code">{{village.village_name}}</ng-option>
+          </ng-select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div> 
+    <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+</div>
